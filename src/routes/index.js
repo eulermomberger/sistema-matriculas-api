@@ -1,18 +1,17 @@
-const { Router } = require("express");
+const { Router } = require('express');
 
-const usersRouter = require("./users.routes");
-const sessionsRouter = require("./sessions.routes");
-const exercisesRouter = require("./exercises.routes");
-const groupRouter = require("./group.routes");
-const historyRouter = require("./history.routes");
+const classesRouter = require('./classes.routes');
+const enrollmentsRouter = require('./enrollments.routes');
+const professorsRouter = require('./professors.routes');
+const subjectsRouter = require('./subjects.routes');
+const usersRouter = require('./users.routes');
 
 const routes = Router();
 
-routes.use("/users", usersRouter);
-routes.use("/sessions", sessionsRouter);
-
-routes.use("/exercises", exercisesRouter);
-routes.use("/groups", groupRouter);
-routes.use("/history", historyRouter);
+routes.use('/classes', classesRouter);
+routes.use('/enrollments', enrollmentsRouter);
+routes.use('/professors', professorsRouter);
+routes.use('/subjects', subjectsRouter);
+routes.use('/users', usersRouter);
 
 module.exports = routes;
