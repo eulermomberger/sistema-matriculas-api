@@ -81,6 +81,34 @@ class ClassesController {
 
     return response.status(200).json();
   }
+
+  async update(request, response) {
+    const {
+      professor_id: professorId,
+      shift,
+      max_of_students: maxOfStudents,
+    } = request.body;
+
+    const classId = request.params.id;
+
+    if (!professorId || !shift || !maxOfStudents) {
+      throw new AppError('Informe todos os campos!');
+    }
+
+    const currentClass = await knex('classes').where({ id: classId }).first();
+
+    if (!currentClass) {
+      throw new AppError('Turma não encontrada!');
+    }
+
+    await knex('classes').where({ id: classId }).update({
+      professor_id: professorId,
+      shift,
+      max_of_students: maxOfStudents,
+    });
+
+    return response.status(200).json();
+  }
 }
 
 module.exports = ClassesController;
